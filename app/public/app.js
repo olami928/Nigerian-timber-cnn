@@ -163,8 +163,8 @@ fileInput.addEventListener("change", async () => {
     preview.src = previewUrl;
     previewWrap.hidden = false;
     identifyButton.disabled = false;
-    photoMessage.textContent = selectedSharpness < 171.4
-      ? `This image may be too blurry (sharpness ${selectedSharpness.toFixed(1)}; minimum 171.4). You can retake it or continue to see the quality check.`
+    photoMessage.textContent = selectedSharpness < 100
+      ? `This image may be too blurry (sharpness ${selectedSharpness.toFixed(1)}; minimum 100). You can retake it or continue to see the quality check.`
       : `Image ready (${bitmap.width} × ${bitmap.height}). Images stay in this browser; sharpness ${selectedSharpness.toFixed(1)}.`;
   } catch (error) {
     console.error(error);

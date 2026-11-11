@@ -13,6 +13,13 @@ patch_ready_dataset_raw_backup/
 .pytest_cache/
 *.zip
 .vercel/
+
+# Design reference images (do not push to GitHub)
+image.png
+*.png
+*.jpg
+*.jpeg
+*.svg
 .DS_Store
 Thumbs.db
 .env
