@@ -189,6 +189,7 @@ function clearSelection(message) {
 
 fileInput.addEventListener("change", async () => {
   await handleFile(fileInput);
+});
 
 if (uploadDrop) {
   uploadDrop.addEventListener("dragover", (event) => {
