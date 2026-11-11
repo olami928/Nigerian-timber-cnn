@@ -9,7 +9,7 @@ const speciesCount = document.querySelector("#species-count");
 const speciesEmpty = document.querySelector("#species-empty");
 const speciesError = document.querySelector("#species-error");
 const uploadDrop = document.querySelector("#upload-drop");
-const fileInput = document.querySelector("#wood-photo");
+const fileInput = document.getElementById("wood-photo-camera");
 const previewWrap = document.querySelector("#preview-wrap");
 const preview = document.querySelector("#photo-preview");
 const photoMessage = document.querySelector("#photo-message");
@@ -59,6 +59,67 @@ navLinks.forEach((link) =>
 document.querySelectorAll("[data-go]").forEach((button) =>
   button.addEventListener("click", () => showScreen(button.dataset.go)),
 );
+
+function handleFile(input) {
+  return new Promise((resolve) => {
+    const file = input.files?.[0];
+    if (!file) { resolve(); return; }
+    input.value = "";
+    clearSelection("");
+    if (!IMAGE_TYPES.has(file.type)) {
+      photoMessage.textContent = "Choose a JPEG or PNG image.";
+      resolve();
+      return;
+    }
+    if (file.size > MAX_FILE_BYTES) {
+      photoMessage.textContent = "This image is larger than 8 MB. Choose a smaller file.";
+      resolve();
+      return;
+    }
+
+    createImageBitmap(file, { colorSpaceConversion: "none", imageOrientation: "from-image" })
+      .then((bitmap) => {
+        if (bitmap.width < GRID_COLS || bitmap.height < GRID_ROWS) {
+          bitmap.close();
+          photoMessage.textContent = "This image is too small to analyse 48 sections. Choose a larger image.";
+          resolve();
+          return;
+        }
+        return bitmap;
+      })
+      .then((bitmap) => {
+        const canvas = document.createElement("canvas");
+        canvas.width = bitmap.width;
+        canvas.height = bitmap.height;
+        const context = canvas.getContext("2d", { willReadFrequently: true });
+        if (!context) throw new Error("Your browser could not prepare the selected image.");
+        context.drawImage(bitmap, 0, 0);
+        selectedImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        selectedSharpness = calculateSharpness(selectedImageData);
+        selectedImage = bitmap;
+        previewUrl = URL.createObjectURL(file);
+        preview.src = previewUrl;
+        previewWrap.hidden = false;
+        identifyButton.disabled = false;
+        photoMessage.textContent = selectedSharpness < 100
+          ? `This image may be too blurry (sharpness ${selectedSharpness.toFixed(1)}; minimum 100). You can retake it or continue to see the quality check.`
+          : `Image ready (${bitmap.width} × ${bitmap.height}). Images stay in this browser; sharpness ${selectedSharpness.toFixed(1)}.`;
+        bitmap.close();
+        resolve();
+      })
+      .catch((error) => {
+        console.error(error);
+        photoMessage.textContent = error instanceof Error
+          ? `The image could not be opened: ${error.message}`
+          : "The image could not be opened. Try a JPEG or PNG file.";
+        resolve();
+      });
+  });
+}
+
+fileInput.addEventListener("change", async () => { await handleFile(fileInput); });
+document.getElementById("wood-photo-camera")?.addEventListener("change", async () => { await handleFile(document.getElementById("wood-photo-camera")); });
+document.getElementById("wood-photo-gallery")?.addEventListener("change", async () => { await handleFile(document.getElementById("wood-photo-gallery")); });
 
 function renderSpecies(query = "") {
   const normalized = query.trim().toLocaleLowerCase();
@@ -127,52 +188,7 @@ function clearSelection(message) {
 }
 
 fileInput.addEventListener("change", async () => {
-  const file = fileInput.files?.[0];
-  if (!file) return;
-  fileInput.value = "";
-  clearSelection("");
-  if (!IMAGE_TYPES.has(file.type)) {
-    photoMessage.textContent = "Choose a JPEG or PNG image.";
-    return;
-  }
-  if (file.size > MAX_FILE_BYTES) {
-    photoMessage.textContent = "This image is larger than 8 MB. Choose a smaller file.";
-    return;
-  }
-
-  try {
-    const bitmap = await createImageBitmap(file, {
-      colorSpaceConversion: "none",
-      imageOrientation: "from-image",
-    });
-    if (bitmap.width < GRID_COLS || bitmap.height < GRID_ROWS) {
-      bitmap.close();
-      photoMessage.textContent = "This image is too small to analyse 48 sections. Choose a larger image.";
-      return;
-    }
-    const canvas = document.createElement("canvas");
-    canvas.width = bitmap.width;
-    canvas.height = bitmap.height;
-    const context = canvas.getContext("2d", { willReadFrequently: true });
-    if (!context) throw new Error("Your browser could not prepare the selected image.");
-    context.drawImage(bitmap, 0, 0);
-    selectedImageData = context.getImageData(0, 0, canvas.width, canvas.height);
-    selectedSharpness = calculateSharpness(selectedImageData);
-    selectedImage = bitmap;
-    previewUrl = URL.createObjectURL(file);
-    preview.src = previewUrl;
-    previewWrap.hidden = false;
-    identifyButton.disabled = false;
-    photoMessage.textContent = selectedSharpness < 100
-      ? `This image may be too blurry (sharpness ${selectedSharpness.toFixed(1)}; minimum 100). You can retake it or continue to see the quality check.`
-      : `Image ready (${bitmap.width} × ${bitmap.height}). Images stay in this browser; sharpness ${selectedSharpness.toFixed(1)}.`;
-  } catch (error) {
-    console.error(error);
-    photoMessage.textContent = error instanceof Error
-      ? `The image could not be opened: ${error.message}`
-      : "The image could not be opened. Try a JPEG or PNG file.";
-  }
-});
+  await handleFile(fileInput);
 
 if (uploadDrop) {
   uploadDrop.addEventListener("dragover", (event) => {
@@ -189,10 +205,11 @@ if (uploadDrop) {
     uploadDrop.classList.remove("is-dragging");
     const file = event.dataTransfer?.files?.[0];
     if (!file) return;
+    const cameraInput = document.getElementById("wood-photo-camera");
     const transfer = new DataTransfer();
     transfer.items.add(file);
-    fileInput.files = transfer.files;
-    fileInput.dispatchEvent(new Event("change"));
+    cameraInput.files = transfer.files;
+    cameraInput.dispatchEvent(new Event("change"));
   });
 }
 
