@@ -477,7 +477,7 @@ function showError(message) {
 identifyButton.addEventListener("click", async () => {
   if (!selectedImageData || selectedSharpness === undefined || busy) return;
   result.replaceChildren();
-  if (selectedSharpness < 171.4) {
+  if (selectedSharpness < 100) {
     identifyStatus.textContent = "";
     renderRetake("blurry");
     return;

@@ -1,27 +1,27 @@
 :root {
   color-scheme: light;
-  --ink: #17231d;
-  --ink-soft: #2c3d33;
-  --muted: #55675c;
-  --line: #dde2d9;
-  --line-strong: #c6cec3;
-  --paper: #f5f4ee;
-  --surface: #fffef9;
-  --accent: #1f5c3f;
-  --accent-strong: #123d29;
-  --accent-soft: #e7efe8;
-  --accent-wash: #f0f5ef;
-  --warning-bg: #fff8e8;
-  --warning-ink: #584113;
-  --warning-line: #c28a22;
-  --error: #94372c;
-  --shadow-sm: 0 1px 2px rgba(23, 35, 29, 0.06);
-  --shadow-md: 0 22px 48px -30px rgba(23, 35, 29, 0.45);
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --radius-sm: 11px;
+  --ink: #1a2e22;
+  --ink-soft: #3d5a48;
+  --muted: #5c6b5f;
+  --line: #c9d4cb;
+  --line-strong: #a8b8ae;
+  --paper: #faf9f5;
+  --surface: #ffffff;
+  --accent: #2e5d44;
+  --accent-strong: #1e4030;
+  --accent-soft: #eef3ee;
+  --accent-wash: #f5f8f5;
+  --warning-bg: #fdf3e3;
+  --warning-ink: #7a5213;
+  --warning-line: #c9a227;
+  --error: #8c3b2e;
+  --shadow-sm: 0 1px 3px rgba(26, 46, 34, 0.08);
+  --shadow-md: 0 4px 12px rgba(26, 46, 34, 0.1);
+  --radius-lg: 10px;
+  --radius-md: 6px;
+  --radius-sm: 4px;
   --serif: ui-serif, Georgia, Cambria, "Times New Roman", serif;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; }
@@ -31,111 +31,165 @@ html { scroll-behavior: smooth; }
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    radial-gradient(900px 460px at 88% -12%, #e8efe7 0%, rgba(232, 239, 231, 0) 62%),
-    radial-gradient(760px 420px at -8% 18%, #efeade 0%, rgba(239, 234, 222, 0) 58%),
-    var(--paper);
+  background: var(--paper);
   color: var(--ink);
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 
 button, input { font: inherit; }
 button { color: inherit; }
-h1, h2, h3, p { text-wrap: pretty; }
 
-.skip-link {
-  position: absolute;
-  top: 0.5rem;
-  left: 0.5rem;
-  z-index: 50;
-  padding: 0.65rem 0.9rem;
-  transform: translateY(-180%);
-  border-radius: var(--radius-sm);
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-md);
+h1, h2, h3 { font-family: var(--serif); margin: 0 0 1rem; font-weight: 600; }
+p { margin: 0 0 1rem; }
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }
-.skip-link:focus { transform: none; }
+
+.screen { display: none; }
+.screen.active { display: block; }
+
+.section-heading { margin-bottom: 2rem; }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.eyebrow-dot { width: 6px; height: 6px; background: currentColor; border-radius: 50%; }
+
+h1 { font-size: 1.75rem; line-height: 1.3; margin-bottom: 1rem; }
+.lead { color: var(--ink-soft); font-size: 1.05rem; max-width: 620px; }
+
+.stat-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+.stat-row > div { flex: 1; }
+.stat-row dt {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+.stat-row dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.notice {
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  background: var(--accent-wash);
+  color: var(--ink);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+.notice-mark {
+  color: var(--accent-strong);
+  font-weight: 800;
+  font-size: 1.25rem;
+}
+.notice strong { color: var(--accent-strong); }
+.performance-warning {
+  border-left-color: var(--warning-line);
+  background: var(--warning-bg);
+}
+.performance-warning .notice-mark { color: var(--warning-ink); }
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 30;
   border-bottom: 1px solid var(--line);
-  background: rgba(245, 244, 238, 0.88);
-  backdrop-filter: blur(14px);
+  background: var(--surface);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
-  width: min(100% - 2.5rem, 1160px);
-  min-height: 78px;
+  gap: 1rem;
+  width: min(100% - 2rem, 1200px);
+  min-height: 64px;
   margin: 0 auto;
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  gap: 0.75rem;
   color: var(--ink);
   text-decoration: none;
 }
 
 .brand-mark {
-  display: grid;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   flex: 0 0 auto;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #f3f7f1;
+  border: 1.5px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
 }
 
 .brand-mark svg { width: 100%; height: 100%; }
 
-.brand-text { display: grid; line-height: 1.15; }
-.brand-name { font-weight: 720; letter-spacing: -0.018em; white-space: nowrap; }
-.brand-sub { color: var(--muted); font-size: 0.78rem; white-space: nowrap; }
+.brand-text { display: grid; line-height: 1.2; }
+.brand-name { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; white-space: nowrap; }
+.brand-sub { color: var(--muted); font-size: 0.75rem; white-space: nowrap; }
 
 .site-nav {
   display: flex;
-  gap: 0.2rem;
-  padding: 0.25rem;
+  gap: 0.15rem;
+  padding: 0.2rem;
   border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(235, 237, 230, 0.85);
+  border-radius: var(--radius-md);
+  background: var(--surface);
 }
 
 .nav-link {
-  min-height: 44px;
+  min-height: 40px;
   padding: 0.5rem 1rem;
   border: 0;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: transparent;
   color: var(--muted);
   cursor: pointer;
-  font-size: 0.94rem;
-  font-weight: 620;
+  font-size: 0.9rem;
+  font-weight: 600;
   white-space: nowrap;
-  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+  transition: background-color 150ms, color 150ms;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
-  background: rgba(255, 254, 249, 0.72);
+  background: var(--accent-wash);
   color: var(--accent-strong);
 }
 
 .nav-link.active {
-  background: var(--surface);
-  color: var(--accent-strong);
+  background: var(--accent);
+  color: #ffffff;
   box-shadow: var(--shadow-sm);
 }
 
