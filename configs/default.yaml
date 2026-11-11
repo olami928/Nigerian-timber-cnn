@@ -1,0 +1,82 @@
+# Default configuration for Nigerian Timber Species Identification Pipeline
+#
+# This file contains the regularized, domain-generalization recipe introduced
+# after the P3 evaluation showed a large same-specimen/independent-specimen gap.
+# The original notebook-matched recipe is preserved in configs/legacy.yaml.
+seed: 42
+
+data:
+  raw_dir: "patch_ready_dataset"
+  manifest_path: "data/manifest.csv"
+  splits_path: "data/splits.csv"
+  species_csv: "configs/species.csv"
+  species_enduse_json: "configs/species_enduse.json"
+
+grid:
+  rows: 6
+  cols: 8
+  num_patches: 48
+
+region_grouping:
+  feature_model: "resnet18_imagenet1k_v1"
+  distance_threshold: 0.25
+  distance_metric: "cosine"
+  linkage: "average"
+
+patch:
+  resize_w: 112
+  resize_h: 112
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+models:
+  primary: "shufflenet_v2_x1_0"
+  comparison: "resnet18"
+  num_classes: 29
+  dropout: 0.5
+  leaky_relu_slope: 0.1
+  head_type: "regularized"   # legacy | regularized | linear
+  hidden_dim: 128
+
+training:
+  batch_size: 64
+  epochs_stage1: 10
+  epochs_stage2: 30
+  lr_stage1: 0.001
+  lr_stage2: 0.0001
+  patience: 10
+  val_fraction: 0.15
+  weight_decay: 0.01
+  label_smoothing: 0.1
+  class_weighting: "specimen"   # image (legacy) | specimen
+  backbone_lr_scale: 0.1        # stage-2 backbone LR = lr_stage2 * scale
+  scheduler: "cosine"           # none | cosine
+  warmup_epochs: 2
+  grad_clip_norm: 1.0
+
+augmentation:
+  rotation_degrees: 180
+  horizontal_flip: true
+  vertical_flip: true
+  translation_fraction: 0.08
+  scale_min: 0.9
+  scale_max: 1.1
+  shear_degrees: 5
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.02
+  gaussian_blur_prob: 0.15
+  random_erasing_prob: 0.2
+
+inference:
+  # Keep the original notebook aggregation for training/serving parity.
+  # Set aggregation to "soft" and add TTA views to evaluate the optional
+  # score-boosting path. The browser app must be updated in the same change.
+  aggregation: "majority"      # majority | soft
+  tta_views: []                # e.g. ["identity", "hflip", "vflip", "hvflip"]
+
+thresholds:
+  min_confidence_pct: null  # Set in P3 from out-of-fold predictions
+  min_sharpness: 171.4      # Training-image sharpness 5th percentile (Laplacian variance)

@@ -1,0 +1,5 @@
+{
+  "installCommand": "npm --prefix app ci",
+  "buildCommand": "npm --prefix app run build",
+  "outputDirectory": "app/public"
+}

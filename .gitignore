@@ -1,0 +1,38 @@
+.venv/
+app/node_modules/
+app/package-lock.json
+app/public/app.bundle.js
+app/public/class_names.json
+app/public/model.onnx
+app/public/preprocess_config.json
+app/public/ort/
+app/public/species.json
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/
+patch_ready_dataset_raw_backup/
+.pytest_cache/
+*.zip
+.vercel/
+.DS_Store
+Thumbs.db
+.env
+.env.local
+*.log
+coverage/
+
+# data/manifest.csv is needed by the build to generate species.json — keep it tracked.
+# Only ignore large derived data if you add it later:
+# data/derived/
+
+# Training artifacts (large model files, evaluation outputs)
+artifacts/
+
+# Notebooks (Colab training notebooks, not needed for deployment)
+notebooks/
+
+# Project records and reports (documentation, keep tracked)
+# progress.md
+# PROJECT_RECORD.md
+# ARCHITECTURE_OPTIMIZATION_REPORT.md
+# CHAPTER_4_INPUTS.md

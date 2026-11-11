@@ -1,0 +1,25 @@
+{
+  "model_version": "p2-shufflenet_v2",
+  "architecture": "shufflenet_v2",
+  "grid_rows": 6,
+  "grid_cols": 8,
+  "num_patches": 48,
+  "patch_size": [
+    112,
+    112
+  ],
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "min_confidence_pct": null,
+  "min_sharpness": 171.4
+}

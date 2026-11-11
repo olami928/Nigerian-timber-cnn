@@ -1,0 +1,76 @@
+# Reduced-epoch CPU profile for the regularized recipe.
+# This is a separate exploratory schedule; the full schedule is default.yaml.
+seed: 42
+
+data:
+  raw_dir: "patch_ready_dataset"
+  manifest_path: "data/manifest.csv"
+  splits_path: "data/splits.csv"
+  species_csv: "configs/species.csv"
+  species_enduse_json: "configs/species_enduse.json"
+
+grid:
+  rows: 6
+  cols: 8
+  num_patches: 48
+
+region_grouping:
+  feature_model: "resnet18_imagenet1k_v1"
+  distance_threshold: 0.25
+  distance_metric: "cosine"
+  linkage: "average"
+
+patch:
+  resize_w: 112
+  resize_h: 112
+  normalize_mean: [0.485, 0.456, 0.406]
+  normalize_std: [0.229, 0.224, 0.225]
+
+models:
+  primary: "shufflenet_v2_x1_0"
+  comparison: "resnet18"
+  num_classes: 29
+  dropout: 0.5
+  leaky_relu_slope: 0.1
+  head_type: "regularized"
+  hidden_dim: 128
+
+training:
+  batch_size: 64
+  epochs_stage1: 3
+  epochs_stage2: 5
+  lr_stage1: 0.001
+  lr_stage2: 0.0001
+  patience: 3
+  val_fraction: 0.15
+  weight_decay: 0.01
+  label_smoothing: 0.1
+  class_weighting: "specimen"
+  backbone_lr_scale: 0.1
+  scheduler: "cosine"
+  warmup_epochs: 1
+  grad_clip_norm: 1.0
+
+augmentation:
+  rotation_degrees: 180
+  horizontal_flip: true
+  vertical_flip: true
+  translation_fraction: 0.08
+  scale_min: 0.9
+  scale_max: 1.1
+  shear_degrees: 5
+  color_jitter:
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.02
+  gaussian_blur_prob: 0.15
+  random_erasing_prob: 0.2
+
+inference:
+  aggregation: "majority"
+  tta_views: []
+
+thresholds:
+  min_confidence_pct: null
+  min_sharpness: null
