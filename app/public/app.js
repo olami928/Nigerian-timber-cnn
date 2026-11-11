@@ -223,7 +223,7 @@ async function loadModel() {
         || config.num_patches !== PATCH_COUNT
         || config.patch_size[0] !== PATCH_SIZE
         || config.patch_size[1] !== PATCH_SIZE
-        || config.min_sharpness !== 171.4
+        || config.min_sharpness !== 100
         || !Array.isArray(classNames)
         || classNames.length !== 29
       ) {
