@@ -23,7 +23,7 @@ const [config, classNames, species] = await Promise.all([
   readFile(resolve(publicDir, "species.json"), "utf8").then(JSON.parse),
 ]);
 if (
-  config.min_sharpness !== 171.4
+  config.min_sharpness !== 100
   || !Array.isArray(classNames)
   || classNames.length !== 29
   || classNames.some((name, index) => name !== species[index]?.slug)
