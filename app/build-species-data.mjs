@@ -2,6 +2,15 @@ import { readFile, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+/**
+ * Generates the bundled offline species database from authoritative project sources.
+ * Sources (never fetched at runtime): configs/species.csv, configs/species_enduse.json, data/manifest.csv
+ * Output: app/public/species.json (copied into Android assets by build/sync)
+ *
+ * Regenerate whenever source files change:
+ *   npm --prefix app run build
+ * (or: node app/build-species-data.mjs)
+ */
 const appDir = dirname(fileURLToPath(import.meta.url));
 const projectDir = resolve(appDir, "..");
 const csv = await readFile(resolve(projectDir, "configs/species.csv"), "utf8");
@@ -28,25 +37,39 @@ for (const row of manifestRows) {
 }
 
 const species = rows.map((row) => {
-  const [id, slug, localName, botanical, woodType] = row.split(",");
+  const [id, slug, localName, botanical, woodType] = parseCsvRow(row);
   const details = lookupBySlug.get(slug);
-  if (!details || details.botanical !== botanical) {
-    throw new Error(`Species lookup does not match configs/species.csv: ${slug}`);
+  if (!details) {
+    throw new Error(`Missing species_enduse.json entry for: ${slug}`);
   }
-  const uses = Object.fromEntries(
+  if (details.botanical !== botanical) {
+    throw new Error(`Species lookup botanical does not match configs/species.csv: ${slug}`);
+  }
+  if ((details.local_name ?? "") !== localName || (details.wood_type ?? "") !== woodType) {
+    throw new Error(`Species lookup local_name/wood_type does not match configs/species.csv: ${slug}`);
+  }
+  const documentedUses = Object.fromEntries(
     Object.entries(details.uses ?? {}).filter(([, status]) =>
       ["primary", "secondary"].includes(status),
     ),
   );
+  const sources = Array.isArray(details.sources)
+    ? details.sources.filter((value) => typeof value === "string" && value.trim().length > 0)
+    : [];
   return {
     id: Number(id),
     slug,
     local_name: localName,
     botanical,
-    english_name: details.english_name || null,
+    english_name: details.english_name ?? null,
     wood_type: woodType,
-    uses,
+    documented_uses: documentedUses,
+    sources,
     training_specimens: specimenSets.get(slug)?.size ?? 0,
+    provenance: {
+      status: details.status ?? null,
+      notes: details.notes ?? null,
+    },
   };
 });
 
@@ -54,15 +77,32 @@ if (
   species.length !== 29
   || lookupBySlug.size !== species.length
   || species.some((item) => item.training_specimens < 1)
+  || species.some((item, index) => item.id !== index + 1)
 ) {
-  throw new Error("Expected matching species lists of exactly 29 entries.");
+  throw new Error("Expected matching species lists of exactly 29 entries with canonical IDs.");
 }
+
+const database = {
+  meta: {
+    generated_from: [
+      "configs/species.csv",
+      "configs/species_enduse.json",
+      "data/manifest.csv",
+    ],
+    species_count: species.length,
+    purpose:
+      "Bundled offline species reference. Documented uses are literature/database records, not model predictions.",
+    rules: Array.isArray(lookup.meta?.rules) ? lookup.meta.rules : [],
+    status_values: lookup.meta?.status_values ?? {},
+  },
+  species,
+};
 
 await writeFile(
   resolve(appDir, "public/species.json"),
-  `${JSON.stringify(species, null, 2)}\n`,
+  `${JSON.stringify(database, null, 2)}\n`,
 );
-console.log(`Generated public species data for ${species.length} species.`);
+console.log(`Generated offline species database for ${species.length} species.`);
 
 function parseCsvRow(line) {
   const fields = [];

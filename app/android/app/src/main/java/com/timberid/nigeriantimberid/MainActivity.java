@@ -1,0 +1,5 @@
+package com.timberid.nigeriantimberid;
+
+import com.getcapacitor.BridgeActivity;
+
+public class MainActivity extends BridgeActivity {}

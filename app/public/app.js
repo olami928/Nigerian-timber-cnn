@@ -30,11 +30,12 @@ let selectedImage;
 let selectedImageData;
 let selectedSharpness;
 let previewUrl;
+let resultPreviewUrl;
 let modelPromise;
 let busy = false;
 
 ort.env.wasm.numThreads = 1;
-ort.env.wasm.wasmPaths = "/ort/";
+ort.env.wasm.wasmPaths = "./ort/";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -97,14 +98,15 @@ function handleFile(input) {
         selectedImageData = context.getImageData(0, 0, canvas.width, canvas.height);
         selectedSharpness = calculateSharpness(selectedImageData);
         selectedImage = bitmap;
+        if (previewUrl) URL.revokeObjectURL(previewUrl);
         previewUrl = URL.createObjectURL(file);
         preview.src = previewUrl;
         previewWrap.hidden = false;
         identifyButton.disabled = false;
         photoMessage.textContent = selectedSharpness < 100
-          ? `This image may be too blurry (sharpness ${selectedSharpness.toFixed(1)}; minimum 100). You can retake it or continue to see the quality check.`
-          : `Image ready (${bitmap.width} × ${bitmap.height}). Images stay in this browser; sharpness ${selectedSharpness.toFixed(1)}.`;
-        bitmap.close();
+          ? `Image selected (${bitmap.width} × ${bitmap.height}). It may be too blurry for reliable analysis (sharpness ${selectedSharpness.toFixed(1)}; minimum 100). Retake or replace if possible.`
+          : `Image ready (${bitmap.width} × ${bitmap.height}). Processed locally on this device; sharpness ${selectedSharpness.toFixed(1)}.`;
+        identifyStatus.textContent = "Ready to submit for identification.";
         resolve();
       })
       .catch((error) => {
@@ -117,50 +119,68 @@ function handleFile(input) {
   });
 }
 
-fileInput.addEventListener("change", async () => { await handleFile(fileInput); });
-document.getElementById("wood-photo-camera")?.addEventListener("change", async () => { await handleFile(document.getElementById("wood-photo-camera")); });
-document.getElementById("wood-photo-gallery")?.addEventListener("change", async () => { await handleFile(document.getElementById("wood-photo-gallery")); });
+const cameraInput = document.getElementById("wood-photo-camera");
+const galleryInput = document.getElementById("wood-photo-gallery");
+[cameraInput, galleryInput].filter(Boolean).forEach((input) => {
+  input.addEventListener("change", async () => { await handleFile(input); });
+});
 
 function renderSpecies(query = "") {
   const normalized = query.trim().toLocaleLowerCase();
   const matches = speciesData.filter((species) =>
-    `${species.local_name} ${species.botanical}`.toLocaleLowerCase().includes(normalized),
+    `${species.local_name} ${species.botanical} ${species.english_name || ""}`.toLocaleLowerCase().includes(normalized),
   );
   speciesList.replaceChildren();
   matches.forEach((species) => {
-    const card = document.createElement("article");
-    card.className = "species-card";
-    const id = document.createElement("span");
-    id.className = "species-id";
-    id.textContent = String(species.id).padStart(2, "0");
-    const name = document.createElement("h2");
-    name.textContent = species.local_name;
-    const botanical = document.createElement("p");
-    botanical.className = "scientific";
-    botanical.textContent = species.botanical;
-    const type = document.createElement("span");
-    type.className = "badge";
-    type.textContent = species.wood_type;
-    card.append(id, name, botanical, type);
+    const card = element("article", "species-card");
+    card.append(element("span", "species-id", `#${String(species.id).padStart(2, "0")}`));
+    card.append(element("h2", "", species.local_name));
+    card.append(element("p", "scientific", species.botanical));
+    if (species.english_name) card.append(element("p", "english-name", species.english_name));
+    const meta = element("div", "meta-row");
+    meta.append(element("span", "badge", species.wood_type || "Hardwood"));
+    if (typeof species.training_specimens === "number") {
+      meta.append(element("span", "meta-pill", `${species.training_specimens} training specimen${species.training_specimens === 1 ? "" : "s"}`));
+    }
+    card.append(meta);
+    const uses = getDocumentedUses(species);
+    if (uses.length) {
+      const useWrap = element("div", "uses-section");
+      useWrap.append(element("h3", "", "Documented uses"));
+      const chips = element("div", "use-chips");
+      uses.slice(0, 6).forEach(([use, status]) => chips.append(element("span", `use-chip ${status}`, use.replaceAll("_", " "))));
+      useWrap.append(chips);
+      if (uses.length > 6) useWrap.append(element("p", "supporting-text", `+${uses.length - 6} more documented uses in result/details.`));
+      card.append(useWrap);
+    } else {
+      card.append(element("p", "supporting-text", "No documented end-uses recorded in the current database."));
+    }
+    card.append(element("p", "supporting-text", "Documented uses are literature/database records, not image predictions."));
     speciesList.append(card);
   });
   speciesEmpty.hidden = matches.length !== 0;
-  speciesCount.textContent = `${matches.length} of ${speciesData.length} species`;
+  speciesCount.textContent = `${matches.length} of ${speciesData.length} supported species`;
 }
 
-speciesPromise = fetch("/species.json")
+function getDocumentedUses(species) {
+  const source = species?.documented_uses ?? species?.uses ?? {};
+  return Object.entries(source).filter(([, status]) => status === "primary" || status === "secondary");
+}
+
+speciesPromise = fetch("species.json")
   .then((response) => {
     if (!response.ok) throw new Error(`Species data request failed: ${response.status}`);
     return response.json();
   })
-  .then((species) => {
+  .then((payload) => {
+    const species = Array.isArray(payload?.species) ? payload.species : payload;
     if (!Array.isArray(species) || species.length !== 29) {
       throw new Error("Species data did not contain the expected 29 entries.");
     }
     speciesData = species;
     species.forEach((item) => speciesByName.set(item.slug, item));
     renderSpecies();
-    return species;
+    return payload;
   })
   .catch((error) => {
     console.error(error);
@@ -170,6 +190,12 @@ speciesPromise = fetch("/species.json")
   });
 
 speciesSearch.addEventListener("input", (event) => renderSpecies(event.target.value));
+
+document.getElementById("replace-photo")?.addEventListener("click", () => {
+  const target = galleryInput || cameraInput;
+  if (target) target.click();
+});
+
 
 function clearSelection(message) {
   selectedImage?.close();
@@ -185,11 +211,13 @@ function clearSelection(message) {
     URL.revokeObjectURL(previewUrl);
     previewUrl = undefined;
   }
+  if (resultPreviewUrl) {
+    URL.revokeObjectURL(resultPreviewUrl);
+    resultPreviewUrl = undefined;
+  }
 }
 
-fileInput.addEventListener("change", async () => {
-  await handleFile(fileInput);
-});
+
 
 if (uploadDrop) {
   uploadDrop.addEventListener("dragover", (event) => {
@@ -218,9 +246,9 @@ async function loadModel() {
   if (!modelPromise) {
     modelPromise = (async () => {
       const [configResponse, classesResponse, modelResponse] = await Promise.all([
-        fetch("/preprocess_config.json"),
-        fetch("/class_names.json"),
-        fetch("/model.onnx"),
+        fetch("preprocess_config.json"),
+        fetch("class_names.json"),
+        fetch("model.onnx"),
       ]);
       for (const [label, response] of [
         ["Model configuration", configResponse],
@@ -335,11 +363,7 @@ function aggregate(logits, classNames, config) {
     botanical: species.botanical,
     english_name: species.english_name,
     wood_type: species.wood_type,
-    documented_uses: Object.fromEntries(
-      Object.entries(species.uses ?? {}).filter(
-        ([, status]) => status === "primary" || status === "secondary",
-      ),
-    ),
+    documented_uses: Object.fromEntries(getDocumentedUses(species)),
   };
 }
 
@@ -391,9 +415,9 @@ function renderRetake(reason, top3) {
 }
 
 function makeRetakeButton() {
-  const button = element("button", "button button-secondary", "Choose another photo");
+  const button = element("button", "button button-secondary", "Retake or choose another photo");
   button.type = "button";
-  button.addEventListener("click", () => fileInput.click());
+  button.addEventListener("click", () => (galleryInput || cameraInput || fileInput)?.click());
   return button;
 }
 
@@ -402,13 +426,30 @@ function renderPrediction(prediction) {
   card.setAttribute("aria-labelledby", "result-title");
   const species = speciesByName.get(prediction.species);
   if (!species) throw new Error(`Species details are missing for ${prediction.species}.`);
+
+  const layout = element("div", "result-layout");
+  if (previewUrl) {
+    const figure = element("figure", "result-photo");
+    const img = document.createElement("img");
+    img.src = previewUrl;
+    img.alt = "Uploaded timber photograph used for identification";
+    const cap = element("figcaption", "", "Uploaded photograph (processed locally)");
+    figure.append(img, cap);
+    layout.append(figure);
+  }
+
+  const details = element("div", "result-details");
   const heading = element("h2", "", species.local_name);
   heading.id = "result-title";
-  card.append(heading);
-  const scientific = element("p", "scientific", species.botanical);
-  card.append(scientific);
-  if (species.english_name) card.append(element("p", "english-name", species.english_name));
-  card.append(element("span", "badge", "Hardwood"));
+  details.append(heading);
+  details.append(element("p", "scientific", species.botanical));
+  if (species.english_name) details.append(element("p", "english-name", species.english_name));
+  const meta = element("div", "meta-row");
+  meta.append(element("span", "badge", prediction.wood_type || species.wood_type || "Hardwood"));
+  if (typeof species.training_specimens === "number") {
+    meta.append(element("span", "meta-pill", `${species.training_specimens} training specimen${species.training_specimens === 1 ? "" : "s"} in dataset`));
+  }
+  details.append(meta);
 
   const confidence = element("div", "confidence-block");
   const label = element("p", "confidence-label");
@@ -424,57 +465,62 @@ function renderPrediction(prediction) {
   confidence.append(element(
     "p",
     "supporting-text",
-    `Mean winning-class probability (secondary): ${prediction.mean_probability_pct}%. Patch agreement is not a guarantee of correctness.`,
+    `Mean winning-class probability (secondary): ${prediction.mean_probability_pct}%. Patch agreement is not a calibrated probability and not a guarantee of correctness.`,
   ));
-  card.append(confidence);
+  details.append(confidence);
 
   const top = element("div", "top-matches");
-  top.append(element("h3", "", "Top matches"));
+  top.append(element("h3", "", "Top 3 predictions"));
   const list = element("ol", "top-list");
   prediction.top3.forEach((item) => {
+    const match = speciesByName.get(item.species);
     const entry = element("li");
-    const name = speciesByName.get(item.species)?.local_name ?? item.species;
-    entry.append(
-      element("span", "", name),
-      element("span", "top-match-values", `${item.vote_pct}% vote · ${item.prob_pct}% probability`),
-    );
+    const left = element("span", "", `${match?.local_name ?? item.species}${match?.botanical ? ` (${match.botanical})` : ""}`);
+    const right = element("span", "top-match-values", `${item.vote_pct}% patch vote · ${item.prob_pct}% mean probability`);
+    entry.append(left, right);
     list.append(entry);
   });
   top.append(list);
-  card.append(top);
+  details.append(top);
 
   if (prediction.limited_reference_data) {
-    card.append(element(
-      "p",
-      "notice",
-      "This species was trained on fewer than 3 specimens. Treat the result with extra caution.",
-    ));
+    details.append(element("p", "notice", "This species had fewer than 3 training specimens in the project dataset. Treat this result with extra caution."));
   }
 
-  const uses = Object.entries(species.uses ?? {}).filter(
-    ([, status]) => status === "primary" || status === "secondary",
-  );
+  const uses = getDocumentedUses({ documented_uses: prediction.documented_uses, uses: species.documented_uses ?? species.uses });
   if (uses.length) {
     const useSection = element("section", "uses-section");
-    useSection.append(element("h3", "", "Documented uses"));
-    const legend = element("p", "use-legend", "Solid: primary · Outlined: secondary");
+    useSection.append(element("h3", "", "Documented applications and end-uses"));
     const chips = element("div", "use-chips");
-    uses.forEach(([use, status]) => {
-      chips.append(element(
-        "span",
-        `use-chip ${status}`,
-        use.replaceAll("_", " "),
-      ));
-    });
-    useSection.append(chips, legend, element(
-      "p",
-      "supporting-text",
-      "Documented uses from the literature, not predicted from your photo.",
-    ));
-    card.append(useSection);
+    uses.forEach(([use, status]) => chips.append(element("span", `use-chip ${status}`, use.replaceAll("_", " "))));
+    useSection.append(chips);
+    useSection.append(element("p", "use-legend", "Solid: primary use · Outlined: secondary use"));
+    useSection.append(element("p", "supporting-text", "Documented from available literature/database records for the species (not predicted from the photograph)."));
+    if (Array.isArray(species.sources) && species.sources.length) {
+      const sources = element("details", "supporting-text");
+      const summary = document.createElement("summary");
+      summary.textContent = "Source records";
+      sources.append(summary);
+      const sourceList = element("ul", "scope-note");
+      species.sources.forEach((source) => sourceList.append(element("li", "", source)));
+      sources.append(sourceList);
+      useSection.append(sources);
+    }
+    details.append(useSection);
   }
-  card.append(element("p", "scope-note", "Covers 29 species from Ibadan wood markets only."));
-  card.append(makeRetakeButton());
+
+  details.append(element("p", "scope-note", "Research prototype (Ibadan, 29 species). Low independent-specimen accuracy reported (ShuffleNetV2 12.1%, ResNet18 11.3%). Patch agreement is not a calibrated probability. Not for legal, purchasing, import/export, or structural decisions. See About for full limitations."));
+
+  const actions = element("div", "result-actions");
+  actions.append(makeRetakeButton());
+  const again = element("button", "button button-primary", "Identify again with this photo");
+  again.type = "button";
+  again.addEventListener("click", () => identifyButton.click());
+  actions.append(again);
+  details.append(actions);
+
+  layout.append(details);
+  card.append(layout);
   revealResult(card);
 }
 

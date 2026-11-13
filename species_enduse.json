@@ -23,7 +23,7 @@
       "slug": "afara",
       "local_name": "Afara",
       "botanical": "Terminalia superba",
-      "english_name": Shinglewood, limba, yellow pine,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "primary",
@@ -41,7 +41,7 @@
       "slug": "agboin",
       "local_name": "Agboin",
       "botanical": "Piptadeniastrum africanum",
-      "english_name": african greenheart,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "primary",
@@ -61,7 +61,7 @@
       "slug": "apa",
       "local_name": "Apa",
       "botanical": "Afzelia africana",
-      "english_name": african mahogany,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "primary",
@@ -79,7 +79,7 @@
       "slug": "araba",
       "local_name": "Araba / Ogungun",
       "botanical": "Ceiba pentandra",
-      "english_name": kapok tree,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -100,7 +100,7 @@
       "slug": "arere",
       "local_name": "Arere",
       "botanical": "Triplochiton scleroxylon",
-      "english_name": african whitewood,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -119,7 +119,7 @@
       "slug": "awun",
       "local_name": "Awun",
       "botanical": "Alstonia boonei",
-      "english_name": african cheesewood,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -139,7 +139,7 @@
       "slug": "ayin",
       "local_name": "Ayin",
       "botanical": "Anogeissus leiocarpa",
-      "english_name": african birch,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "primary",
@@ -156,7 +156,7 @@
       "slug": "ayunre",
       "local_name": "Ayunre",
       "botanical": "Albizia zygia",
-      "english_name": west african albizia,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -174,7 +174,7 @@
       "slug": "emido",
       "local_name": "Emido",
       "botanical": "Manilkara obovata",
-      "english_name": african pearwood,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -190,7 +190,7 @@
       "slug": "epu",
       "local_name": "Epu",
       "botanical": "Ricinodendron heudelotii",
-      "english_name": groundnut tree,
+      "english_name": null,
       "wood_type": "Hardwood",
       "uses": {
         "construction": "secondary",
@@ -211,330 +211,343 @@
       "english_name": "Sandpaper tree",
       "wood_type": "Hardwood",
       "uses": {},
-      "Keay (1989), Trees of Nigeria: Ficus exasperata Vahl (Moraceae)"
-    ],
-    "status": "researched",
-    "notes": "Epin verified in Keay (1989). Uses not yet researched, so nothing is shown."
-  },
-  {
-    "slug": "gmelina",
-    "local_name": "Gmelina",
-    "botanical": "Gmelina arborea",
-    "english_name": gmelina,
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "primary",
-      "plywood": "primary",
-      "interior_finishing": "secondary",
-      "fuelwood": "primary"
+      "sources": [
+        "Keay (1989), Trees of Nigeria: Ficus exasperata Vahl (Moraceae)"
+      ],
+      "status": "researched",
+      "notes": "Epin verified in Keay (1989). Uses not yet researched, so nothing is shown."
     },
-    "sources": [
-      "Orwa et al. (2009)",
-      "TNAU (India): panelling"
-    ],
-    "status": "researched",
-    "notes": "Interior finishing mark rests on a single non-African source."
-  },
-  {
-    "slug": "ire",
-    "local_name": "Ire",
-    "botanical": "Funtumia elastica",
-    "english_name": lagos silk rubber tree,
-    "wood_type": "Hardwood",
-    "uses": {},
-    "sources": [
-      "Oyagade and Fasulu (2005), Journal of Tropical Forest Science 17(2): 258-264"
-    ],
-    "status": "no_documented_use",
-    "notes": "No valid use found."
-  },
-  {
-    "slug": "iroko",
-    "local_name": "Iroko",
-    "botanical": "Milicia excelsa",
-    "english_name": "African Teak",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "primary",
-      "furniture": "primary",
-      "plywood": "secondary",
-      "interior_finishing": "primary",
-      "fuelwood": "secondary"
+    {
+      "slug": "gmelina",
+      "local_name": "Gmelina",
+      "botanical": "Gmelina arborea",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "primary",
+        "plywood": "primary",
+        "interior_finishing": "secondary",
+        "fuelwood": "primary"
+      },
+      "sources": [
+        "Orwa et al. (2009)",
+        "TNAU (India): panelling"
+      ],
+      "status": "researched",
+      "notes": "Interior finishing mark rests on a single non-African source."
     },
-    "sources": [
-      "CIRAD Tropix Iroko",
-      "PROTA (Milicia excelsa)"
-    ],
-    "status": "researched",
-    "notes": "Plywood mark is for sliced (decorative) veneer only."
-  },
-  {
-    "slug": "irugba",
-    "local_name": "Irugba",
-    "botanical": "Parkia biglobosa",
-    "english_name": "African locsut bean",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "secondary",
-      "fuelwood": "secondary"
+    {
+      "slug": "ire",
+      "local_name": "Ire",
+      "botanical": "Funtumia elastica",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary",
+        "plywood": "secondary"
+      },
+      "sources": [
+        "Project-provided documented uses (2026): primary fuelwood (also non-timber rubber latex and match splints); secondary construction, furniture, interior finishing, and niche plywood use."
+      ],
+      "status": "researched",
+      "notes": "Non-timber uses (rubber latex, match splints) noted in source; plywood use is niche."
     },
-    "sources": [
-      "PROTA (Parkia biglobosa)",
-      "Orwa et al. (2009)"
-    ],
-    "status": "researched",
-    "notes": ""
-  },
-  {
-    "slug": "ita",
-    "local_name": "Ita",
-    "botanical": "Celtis zenkeri",
-    "english_name": "African celtis",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "primary",
-      "furniture": "secondary",
-      "plywood": "primary",
-      "interior_finishing": "primary",
-      "fuelwood": "primary"
+    {
+      "slug": "iroko",
+      "local_name": "Iroko",
+      "botanical": "Milicia excelsa",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "primary",
+        "furniture": "primary",
+        "plywood": "secondary",
+        "interior_finishing": "primary",
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "CIRAD Tropix Iroko",
+        "PROTA (Milicia excelsa)"
+      ],
+      "status": "researched",
+      "notes": "Plywood mark is for sliced (decorative) veneer only."
     },
-    "sources": [
-      "PROTA (Celtis zenkeri)",
-      "CIRAD Tropix 'Ohia' sheet"
-    ],
-    "status": "researched",
-    "notes": ""
-  },
-  {
-    "slug": "iya",
-    "local_name": "Iya",
-    "botanical": "Daniellia oliveri",
-    "english_name": african copaiba balsam tree,
-    "wood_type": "Hardwood",
-    "uses": {
-      "furniture": "primary",
-      "interior_finishing": "primary",
-      "fuelwood": "secondary"
+    {
+      "slug": "irugba",
+      "local_name": "Irugba",
+      "botanical": "Parkia biglobosa",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "secondary",
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "PROTA (Parkia biglobosa)",
+        "Orwa et al. (2009)"
+      ],
+      "status": "researched",
+      "notes": ""
     },
-    "sources": [
-      "PROTA (Daniellia oliveri; snippet cut off)",
-      "Houehounha et al. (2010), Agroforestry Systems"
-    ],
-    "status": "partly_researched",
-    "notes": "Plywood unconfirmed, so it is left out."
-  },
-  {
-    "slug": "iyeye",
-    "local_name": "Iyeye",
-    "botanical": "Spondias mombin",
-    "english_name": yellow mombim,
-    "wood_type": "Hardwood",
-    "uses": {
-      "fuelwood": "secondary"
+    {
+      "slug": "ita",
+      "local_name": "Ita",
+      "botanical": "Celtis zenkeri",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "primary",
+        "furniture": "secondary",
+        "plywood": "primary",
+        "interior_finishing": "primary",
+        "fuelwood": "primary"
+      },
+      "sources": [
+        "PROTA (Celtis zenkeri)",
+        "CIRAD Tropix 'Ohia' sheet"
+      ],
+      "status": "researched",
+      "notes": ""
     },
-    "sources": [
-      "Orwa et al. (2009): suitable for firewood"
-    ],
-    "status": "researched",
-    "notes": "Only fuelwood documented."
-  },
-  {
-    "slug": "laoro",
-    "local_name": "Laoro",
-    "botanical": "Boscia angustifolia",
-    "english_name": shepherd tree ,
-    "wood_type": "Hardwood",
-    "uses": {
-      "furniture": "primary",
-      "construction": "secondary",
-      "fuelwood": "secondary"
+    {
+      "slug": "iya",
+      "local_name": "Iya",
+      "botanical": "Daniellia oliveri",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "furniture": "primary",
+        "interior_finishing": "primary",
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "PROTA (Daniellia oliveri; snippet cut off)",
+        "Houehounha et al. (2010), Agroforestry Systems"
+      ],
+      "status": "partly_researched",
+      "notes": "Plywood unconfirmed, so it is left out."
     },
-    "sources": [
-      "PROTA (Boscia angustifolia)",
-      "Orwa et al. (2009)"
-    ],
-    "status": "no_documented_use",
-    "notes": "No valid use found."
-  },
-  {
-    "slug": "mahogany",
-    "local_name": "Mahogany",
-    "botanical": "Khaya senegalensis",
-    "english_name": "African mahogany",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "primary",
-      "plywood": "secondary",
-      "interior_finishing": "primary",
-      "fuelwood": "secondary"
+    {
+      "slug": "iyeye",
+      "local_name": "Iyeye",
+      "botanical": "Spondias mombin",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "Orwa et al. (2009): suitable for firewood"
+      ],
+      "status": "researched",
+      "notes": "Only fuelwood documented."
     },
-    "sources": [
-      "PROTA (Khaya senegalensis)",
-      "CIRAD Tropix (older sheet)",
-      "PROSEA Khaya genus entry"
-    ],
-    "status": "researched",
-    "notes": "One source says only limited quantities available for fuel."
-  },
-  {
-    "slug": "mango",
-    "local_name": "Mango",
-    "botanical": "Mangifera indica",
-    "english_name": "Mango",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "secondary",
-      "plywood": "secondary",
-      "interior_finishing": "secondary",
-      "fuelwood": "primary"
+    {
+      "slug": "laoro",
+      "local_name": "Laoro",
+      "botanical": "Boscia angustifolia",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary"
+      },
+      "sources": [
+        "Project-provided documented uses (2026): primary fuelwood (firewood and charcoal); secondary construction, furniture, and rare interior finishing use; not suitable for plywood."
+      ],
+      "status": "researched",
+      "notes": "Interior finishing use is rare; noted as not suitable for plywood."
     },
-    "sources": [
-      "PROSEA 5(2), Lemmens (1995)",
-      "Biovision/Orwa-based sources"
-    ],
-    "status": "weak_source",
-    "notes": "Mostly Asian or general evidence."
-  },
-  {
-    "slug": "obi",
-    "local_name": "Obi",
-    "botanical": "Cola nitida",
-    "english_name": "Kola nut",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "secondary",
-      "interior_finishing": "secondary",
-      "fuelwood": "secondary"
+    {
+      "slug": "mahogany",
+      "local_name": "Mahogany",
+      "botanical": "Khaya senegalensis",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "primary",
+        "plywood": "secondary",
+        "interior_finishing": "primary",
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "PROTA (Khaya senegalensis)",
+        "CIRAD Tropix (older sheet)",
+        "PROSEA Khaya genus entry"
+      ],
+      "status": "researched",
+      "notes": "One source says only limited quantities available for fuel."
     },
-    "sources": [
-      "Orwa/Lim summary (via Wikipedia)",
-      "Kpatinnon et al. (2026), Ethnobotany Research and Applications 33: 1-16"
-    ],
-    "status": "weak_source",
-    "notes": "Read the Orwa PDF directly before citing."
-  },
-  {
-    "slug": "obobo",
-    "local_name": "Obobo",
-    "botanical": "Ficus mucuso",
-    "english_name": "mucus fig",
-    "wood_type": "Hardwood",
-    "uses": {},
-    "sources": [
-      "Adejoba (University of Ibadan; details still to be found): lesser-used species of low strength"
-    ],
-    "status": "no_documented_use",
-    "notes": "Identity confirmed by Dimeji. No valid use found."
-  },
-  {
-    "slug": "okobo",
-    "local_name": "Okobo",
-    "botanical": "Mitragyna inermis",
-    "english_name": null,
-    "wood_type": "Hardwood",
-    "uses": {},
-    "sources": [
-      "PROTA (Mitragyna stipulosa page): mainly smaller artefacts, mostly medicinal"
-    ],
-    "status": "no_documented_use",
-    "notes": "No valid use found."
-  },
-  {
-    "slug": "oporoporo",
-    "local_name": "Oporoporo",
-    "botanical": "Pterygota macrocarpa",
-    "english_name": null,
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "primary",
-      "plywood": "primary",
-      "interior_finishing": "primary"
+    {
+      "slug": "mango",
+      "local_name": "Mango",
+      "botanical": "Mangifera indica",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "secondary",
+        "plywood": "secondary",
+        "interior_finishing": "secondary",
+        "fuelwood": "primary"
+      },
+      "sources": [
+        "PROSEA 5(2), Lemmens (1995)",
+        "Biovision/Orwa-based sources"
+      ],
+      "status": "weak_source",
+      "notes": "Mostly Asian or general evidence."
     },
-    "sources": [
-      "CIRAD Tropix Pterygota (2024)"
-    ],
-    "status": "researched",
-    "notes": ""
-  },
-  {
-    "slug": "oro",
-    "local_name": "Oro",
-    "botanical": "Antiaris toxicaria",
-    "english_name": null,
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "secondary",
-      "furniture": "primary",
-      "plywood": "primary",
-      "interior_finishing": "primary"
+    {
+      "slug": "obi",
+      "local_name": "Obi",
+      "botanical": "Cola nitida",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary",
+        "fuelwood": "secondary"
+      },
+      "sources": [
+        "Orwa/Lim summary (via Wikipedia)",
+        "Kpatinnon et al. (2026), Ethnobotany Research and Applications 33: 1-16"
+      ],
+      "status": "weak_source",
+      "notes": "Read the Orwa PDF directly before citing."
     },
-    "sources": [
-      "PROTA (Antiaris toxicaria)",
-      "CIRAD Tropix (2003)",
-      "PROSEA"
-    ],
-    "status": "researched",
-    "notes": ""
-  },
-  {
-    "slug": "osun",
-    "local_name": "Osun",
-    "botanical": "Pterocarpus osun",
-    "english_name": null,
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "primary",
-      "furniture": "primary",
-      "interior_finishing": "primary"
+    {
+      "slug": "obobo",
+      "local_name": "Obobo",
+      "botanical": "Ficus mucuso",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary",
+        "plywood": "secondary"
+      },
+      "sources": [
+        "Project-provided documented uses (2026): primary fuelwood (also traditional drums and dugout canoes); secondary construction, furniture, interior finishing, and niche plywood use."
+      ],
+      "status": "researched",
+      "notes": "Non-timber/traditional uses (drums, dugout canoes) noted in source; plywood use is niche."
     },
-    "sources": [
-      "CIRAD Tropix African Padauk (2024)"
-    ],
-    "status": "researched",
-    "notes": ""
-  },
-  {
-    "slug": "parapuru",
-    "local_name": "Parapuru",
-    "botanical": "Klainedoxa spp.",
-    "english_name": null,
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "primary",
-      "furniture": "secondary",
-      "fuelwood": "primary"
+    {
+      "slug": "okobo",
+      "local_name": "Okobo",
+      "botanical": "Mitragyna inermis",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {},
+      "sources": [
+        "PROTA (Mitragyna stipulosa page): mainly smaller artefacts, mostly medicinal"
+      ],
+      "status": "no_documented_use",
+      "notes": "No valid use found."
     },
-    "sources": [
-      "CIRAD Tropix 5.0 (2003) Klainedoxa gabonensis",
-      "West African plants reference (JSTOR Global Plants; details to be confirmed)"
-    ],
-    "status": "researched",
-    "notes": "Genus-level identification."
-  },
-  {
-    "slug": "teak",
-    "local_name": "Teak",
-    "botanical": "Tectona grandis",
-    "english_name": "teak",
-    "wood_type": "Hardwood",
-    "uses": {
-      "construction": "primary",
-      "furniture": "primary",
-      "plywood": "secondary",
-      "interior_finishing": "primary"
+    {
+      "slug": "oporoporo",
+      "local_name": "Oporoporo",
+      "botanical": "Pterygota macrocarpa",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "primary",
+        "plywood": "primary",
+        "interior_finishing": "primary"
+      },
+      "sources": [
+        "CIRAD Tropix Pterygota (2024)"
+      ],
+      "status": "researched",
+      "notes": ""
     },
-    "sources": [
-      "PROTA (Tectona grandis)",
-      "CIRAD Tropix (third-party copy of older sheet)"
-    ],
-    "status": "researched",
-    "notes": ""
-  }
-]
+    {
+      "slug": "oro",
+      "local_name": "Oro",
+      "botanical": "Antiaris toxicaria",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "secondary",
+        "furniture": "primary",
+        "plywood": "primary",
+        "interior_finishing": "primary"
+      },
+      "sources": [
+        "PROTA (Antiaris toxicaria)",
+        "CIRAD Tropix (2003)",
+        "PROSEA"
+      ],
+      "status": "researched",
+      "notes": ""
+    },
+    {
+      "slug": "osun",
+      "local_name": "Osun",
+      "botanical": "Pterocarpus osun",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "primary",
+        "furniture": "primary",
+        "interior_finishing": "primary"
+      },
+      "sources": [
+        "CIRAD Tropix African Padauk (2024)"
+      ],
+      "status": "researched",
+      "notes": ""
+    },
+    {
+      "slug": "parapuru",
+      "local_name": "Parapuru",
+      "botanical": "Klainedoxa spp.",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "primary",
+        "furniture": "secondary",
+        "fuelwood": "primary"
+      },
+      "sources": [
+        "CIRAD Tropix 5.0 (2003) Klainedoxa gabonensis",
+        "West African plants reference (JSTOR Global Plants; details to be confirmed)"
+      ],
+      "status": "researched",
+      "notes": "Genus-level identification."
+    },
+    {
+      "slug": "teak",
+      "local_name": "Teak",
+      "botanical": "Tectona grandis",
+      "english_name": null,
+      "wood_type": "Hardwood",
+      "uses": {
+        "construction": "primary",
+        "furniture": "primary",
+        "plywood": "secondary",
+        "interior_finishing": "primary"
+      },
+      "sources": [
+        "PROTA (Tectona grandis)",
+        "CIRAD Tropix (third-party copy of older sheet)"
+      ],
+      "status": "researched",
+      "notes": ""
+    }
+  ]
 }

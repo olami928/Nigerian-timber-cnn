@@ -17,15 +17,18 @@ for (const [source, destination] of modelFiles) {
   await copyFile(resolve(modelDir, source), resolve(publicDir, destination));
 }
 
-const [config, classNames, species] = await Promise.all([
+const [config, classNames, speciesDb] = await Promise.all([
   readFile(resolve(publicDir, "preprocess_config.json"), "utf8").then(JSON.parse),
   readFile(resolve(publicDir, "class_names.json"), "utf8").then(JSON.parse),
   readFile(resolve(publicDir, "species.json"), "utf8").then(JSON.parse),
 ]);
+const species = Array.isArray(speciesDb?.species) ? speciesDb.species : speciesDb;
 if (
   config.min_sharpness !== 100
   || !Array.isArray(classNames)
   || classNames.length !== 29
+  || !Array.isArray(species)
+  || species.length !== 29
   || classNames.some((name, index) => name !== species[index]?.slug)
 ) {
   throw new Error("The model classes, species list, or approved sharpness cutoff do not match.");

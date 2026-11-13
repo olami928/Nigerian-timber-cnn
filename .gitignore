@@ -37,6 +37,15 @@ artifacts/
 # Notebooks (Colab training notebooks, not needed for deployment)
 notebooks/
 
+# Android signing (never commit)
+*.jks
+*.keystore
+keystore.properties
+**/keystore.properties
+app/android/keystore.properties
+app/android/app/release/
+local.properties
+
 # Project records and reports (documentation, keep tracked)
 # progress.md
 # PROJECT_RECORD.md

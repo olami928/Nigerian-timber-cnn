@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Timber ID</string>
+    <string name="title_activity_main">Timber ID</string>
+    <string name="package_name">com.timberid.nigeriantimberid</string>
+    <string name="custom_url_scheme">com.timberid.nigeriantimberid</string>
+</resources>

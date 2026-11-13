@@ -1,0 +1,10 @@
+{
+  "appId": "com.timberid.nigeriantimberid",
+  "appName": "Timber ID",
+  "webDir": "public",
+  "bundledWebRuntime": false,
+  "backgroundColor": "#f6f1e7",
+  "server": {
+    "androidScheme": "http"
+  }
+}

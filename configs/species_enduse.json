@@ -243,12 +243,18 @@
       "botanical": "Funtumia elastica",
       "english_name": null,
       "wood_type": "Hardwood",
-      "uses": {},
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary",
+        "plywood": "secondary"
+      },
       "sources": [
-        "Oyagade and Fasulu (2005), Journal of Tropical Forest Science 17(2): 258-264"
+        "Project-provided documented uses (2026): primary fuelwood (also non-timber rubber latex and match splints); secondary construction, furniture, interior finishing, and niche plywood use."
       ],
-      "status": "no_documented_use",
-      "notes": "No valid use found."
+      "status": "researched",
+      "notes": "Non-timber uses (rubber latex, match splints) noted in source; plywood use is niche."
     },
     {
       "slug": "iroko",
@@ -347,13 +353,17 @@
       "botanical": "Boscia angustifolia",
       "english_name": null,
       "wood_type": "Hardwood",
-      "uses": {},
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary"
+      },
       "sources": [
-        "PROTA (Boscia angustifolia)",
-        "Orwa et al. (2009)"
+        "Project-provided documented uses (2026): primary fuelwood (firewood and charcoal); secondary construction, furniture, and rare interior finishing use; not suitable for plywood."
       ],
-      "status": "no_documented_use",
-      "notes": "No valid use found."
+      "status": "researched",
+      "notes": "Interior finishing use is rare; noted as not suitable for plywood."
     },
     {
       "slug": "mahogany",
@@ -421,12 +431,18 @@
       "botanical": "Ficus mucuso",
       "english_name": null,
       "wood_type": "Hardwood",
-      "uses": {},
+      "uses": {
+        "fuelwood": "primary",
+        "construction": "secondary",
+        "furniture": "secondary",
+        "interior_finishing": "secondary",
+        "plywood": "secondary"
+      },
       "sources": [
-        "Adejoba (University of Ibadan; details still to be found): lesser-used species of low strength"
+        "Project-provided documented uses (2026): primary fuelwood (also traditional drums and dugout canoes); secondary construction, furniture, interior finishing, and niche plywood use."
       ],
-      "status": "no_documented_use",
-      "notes": "Identity confirmed by Dimeji. No valid use found."
+      "status": "researched",
+      "notes": "Non-timber/traditional uses (drums, dugout canoes) noted in source; plywood use is niche."
     },
     {
       "slug": "okobo",
