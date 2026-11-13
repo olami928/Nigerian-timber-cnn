@@ -3,31 +3,31 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="theme-color" content="#3a2618">
-    <meta name="description" content="Timber ID — on-device identification of 29 Nigerian timber species from transverse end-grain photographs. Research prototype.">
-    <title>Timber ID · End-Grain Analysis</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233a2618'/%3E%3Cg fill='none' stroke='%23e8d3a8' stroke-width='2'%3E%3Ccircle cx='32' cy='32' r='18' opacity='.35'/%3E%3Ccircle cx='32' cy='32' r='11' opacity='.6'/%3E%3Ccircle cx='32' cy='32' r='5'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='2.2' fill='%23e8d3a8'/%3E%3C/svg%3E">
+    <meta name="theme-color" content="#1f3d2b">
+    <meta name="description" content="Nigerian Timber ID — on-device identification of 29 Nigerian timber species from transverse end-grain photographs. Academic research prototype.">
+    <title>Nigerian Timber ID</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f3d2b'/%3E%3Cg fill='none' stroke='%23efe6d6' stroke-width='1.6'%3E%3Cellipse cx='32' cy='32' rx='21' ry='16' opacity='.35'/%3E%3Cellipse cx='32' cy='32' rx='14' ry='10.5' opacity='.55'/%3E%3Cellipse cx='32' cy='32' rx='7.5' ry='5.5'/%3E%3C/g%3E%3Ccircle cx='32' cy='32' r='1.8' fill='%23c7a36a'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
     <script src="app.bundle.js" defer></script>
   </head>
   <body>
-    <div class="grain-bg" aria-hidden="true"></div>
+    <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="./" aria-label="Timber ID home">
+        <a class="brand" href="./" aria-label="Nigerian Timber ID home">
           <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="1.5" opacity=".35"/><circle cx="24" cy="24" r="14.5" stroke="currentColor" stroke-width="1.8" opacity=".55"/><circle cx="24" cy="24" r="9" stroke="currentColor" stroke-width="2.2"/><circle cx="24" cy="24" r="3.4" fill="currentColor"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6" stroke="currentColor" stroke-width="1.2" opacity=".35"/></svg>
+            <svg viewBox="0 0 44 44" fill="none"><rect x="1.5" y="1.5" width="41" height="41" rx="8" stroke="currentColor" stroke-width="1.5" opacity=".5"/><g stroke="currentColor" fill="none"><ellipse cx="22" cy="22" rx="14.5" ry="10.5" stroke-width="1.2" opacity=".4"/><ellipse cx="22" cy="22" rx="9.5" ry="6.8" stroke-width="1.4" opacity=".65"/><ellipse cx="22" cy="22" rx="4.8" ry="3.4" stroke-width="1.6"/></g><circle cx="22" cy="22" r="1.4" fill="currentColor"/></svg>
           </span>
           <span class="brand-text">
-            <span class="brand-name">Timber ID</span>
-            <span class="brand-sub">End-grain field analysis · Nigeria</span>
+            <span class="brand-name">Nigerian Timber ID</span>
+            <span class="brand-sub">Transverse end-grain · 29 species</span>
           </span>
         </a>
         <nav class="site-nav" aria-label="Primary">
           <button class="nav-link active" type="button" data-screen="identify" aria-current="page">Identify</button>
-          <button class="nav-link" type="button" data-screen="species">Species</button>
-          <button class="nav-link" type="button" data-screen="photograph">Capture</button>
-          <button class="nav-link" type="button" data-screen="about">About</button>
+          <button class="nav-link" type="button" data-screen="species">Catalogue</button>
+          <button class="nav-link" type="button" data-screen="photograph">Field guide</button>
+          <button class="nav-link" type="button" data-screen="about">Method</button>
         </nav>
       </div>
     </header>
@@ -35,47 +35,64 @@
     <main id="main">
       <section class="screen active" id="screen-identify" aria-labelledby="identify-title">
         <div class="container">
-          <div class="hero-layout">
+          <div class="hero">
             <div class="hero-copy">
-              <div class="specimen-tag"><span class="tag-dot" aria-hidden="true"></span>Macroscopic transverse analysis · 29-species scope</div>
-              <h1 id="identify-title">Read the wood from its <em>end-grain</em></h1>
-              <p class="lede">Capture the cut cross-section of a timber sample. Timber ID examines 48 local regions with a ShuffleNetV2 model on your device and suggests a match from documented Nigerian species traded in Ibadan markets.</p>
-
-              <div class="metrics" aria-label="Project scope">
-                <div class="metric"><span class="metric-value">29</span><span class="metric-label">Species in scope</span></div>
-                <div class="metric"><span class="metric-value">48</span><span class="metric-label">Patches per image</span></div>
-                <div class="metric"><span class="metric-value">On-device</span><span class="metric-label">No image upload</span></div>
+              <p class="eyebrow">Macroscopic wood identification · University of Ibadan</p>
+              <h1 id="identify-title">Nigerian timber, examined from the end-grain.</h1>
+              <p class="lede">An on-device field instrument for comparing transverse cut surfaces against 29 hardwood species documented in Ibadan wood markets. Analysis runs locally in 48 anatomical regions per image.</p>
+              <div class="hero-actions">
+                <a class="btn btn-primary btn-lg" href="#acquire">Identify a specimen</a>
+                <button class="btn btn-secondary btn-lg" type="button" data-go="species">Open species catalogue</button>
               </div>
-
-              <ul class="hero-points" aria-label="How to use">
-                <li>Use a flat, clean transverse (end-grain) face.</li>
-                <li>Processing runs locally; documented uses are reference records.</li>
-                <li>Review methods and limits in <button class="link-btn" type="button" data-go="about">About</button>.</li>
-              </ul>
+              <dl class="scope-strip" aria-label="Scope">
+                <div><dt>Scope</dt><dd>29 hardwood species</dd></div>
+                <div><dt>Method</dt><dd>6 × 8 patch analysis</dd></div>
+                <div><dt>Privacy</dt><dd>Local processing only</dd></div>
+              </dl>
             </div>
-
-            <aside class="capture-card" id="upload-zone" aria-labelledby="capture-title">
-              <div class="card-head">
-                <p class="step">1. Capture</p>
-                <h2 id="capture-title">Submit a transverse end-grain photo</h2>
-                <p class="muted">JPEG or PNG, up to 8 MB. The image stays on this device and is never uploaded.</p>
+            <figure class="hero-plate" aria-label="Schematic transverse section">
+              <div class="plate-frame">
+                <div class="endgrain" aria-hidden="true">
+                  <span class="ring r1"></span><span class="ring r2"></span><span class="ring r3"></span><span class="ring r4"></span><span class="ring r5"></span>
+                  <span class="ray"></span><span class="ray v2"></span><span class="ray v3"></span><span class="ray v4"></span>
+                  <i class="pith"></i>
+                </div>
               </div>
+              <figcaption><span class="fig-label">Fig. 1</span> Schematic transverse (end-grain) section. Identification depends on vessels, rays and growth features visible on a clean cut face.</figcaption>
+            </figure>
+          </div>
+
+          <div class="workbench" id="acquire">
+            <section class="panel acquire-panel" id="upload-zone" aria-labelledby="capture-title">
+              <header class="panel-head">
+                <p class="panel-step">Specimen acquisition</p>
+                <h2 id="capture-title">Photograph or select a transverse end-grain image</h2>
+                <p class="muted">Use the cut cross-section (not side grain or bark). JPEG/PNG, up to 8 MB. The image is analysed on this device and never uploaded.</p>
+              </header>
 
               <div class="dropzone" id="upload-drop">
+                <div class="drop-illustration" aria-hidden="true">
+                  <svg viewBox="0 0 120 72" fill="none"><rect x="1" y="1" width="118" height="70" rx="10" stroke="currentColor" stroke-width="1.2" stroke-dasharray="4 4" opacity=".45"/><circle cx="60" cy="34" r="18" stroke="currentColor" stroke-width="1.2" opacity=".35"/><circle cx="60" cy="34" r="10" stroke="currentColor" stroke-width="1.4" opacity=".55"/><circle cx="60" cy="34" r="3" fill="currentColor" opacity=".5"/><path d="M60 16v6M60 46v6M42 34h6M72 34h6" stroke="currentColor" stroke-width="1.2" opacity=".45"/></svg>
+                </div>
                 <div class="actions">
                   <label class="btn btn-primary" for="wood-photo-camera">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5h3.2l1.3-2h7l1.3 2H20a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1Z" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12.8" r="3.3" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
-                    Open camera
+                    Use camera
                   </label>
                   <input id="wood-photo-camera" class="visually-hidden" type="file" accept="image/jpeg,image/png,image/*" capture="environment">
 
                   <label class="btn btn-secondary" for="wood-photo-gallery">
                     <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M6 16l3.3-3.3 2.6 2.6L15.6 12 18 14.5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8.5" cy="8.7" r="1.1" fill="currentColor"/></svg>
-                    Choose from gallery
+                    Choose from files
                   </label>
                   <input id="wood-photo-gallery" class="visually-hidden" type="file" accept="image/jpeg,image/png,image/*">
                 </div>
-                <p class="hint">Drag and drop supported. You can preview, retake, or replace before analysis.</p>
+                <p class="hint">Drag and drop supported. You may preview, replace, or retake before analysis.</p>
+              </div>
+
+              <div class="acquire-guidance" aria-label="Surface guidance">
+                <div class="guide-chip good"><strong>Suitable</strong><span>Flat, clean end-grain face, sharp focus, even light</span></div>
+                <div class="guide-chip avoid"><strong>Avoid</strong><span>Side grain, bark, blur, glare, shadow, obstructions</span></div>
               </div>
 
               <p id="photo-message" class="status" role="status" aria-live="polite"></p>
@@ -83,127 +100,115 @@
               <div class="preview" id="preview-wrap" hidden>
                 <img id="photo-preview" alt="Preview of selected timber photograph">
                 <div class="preview-bar">
-                  <span>Selected image preview</span>
-                  <button class="btn btn-ghost" id="replace-photo" type="button">Retake / replace</button>
+                  <span>Selected specimen image</span>
+                  <button class="btn btn-ghost" id="replace-photo" type="button">Replace / retake</button>
                 </div>
               </div>
 
               <div class="submit-area">
-                <p class="step">2. Analyse</p>
-                <button class="btn btn-primary btn-block" id="identify-button" type="button" disabled>Run identification</button>
+                <p class="panel-step">Analysis</p>
+                <button class="btn btn-primary btn-block" id="identify-button" type="button" disabled>Analyse end-grain (48 regions)</button>
                 <p id="identify-status" class="status muted" role="status" aria-live="polite"></p>
               </div>
-            </aside>
-          </div>
+            </section>
 
-          <div class="content-grid">
-            <article class="panel">
-              <h2>Identification process</h2>
-              <ol class="process">
-                <li><strong>Acquire image.</strong> Capture the transverse (end-grain) surface, not side grain or bark.</li>
-                <li><strong>Extract patches.</strong> The image is divided into a 6 × 8 grid (48 regions) in raster order.</li>
-                <li><strong>Classify patches.</strong> Each region is resized to 112 × 112, ImageNet-normalized, and evaluated by ShuffleNetV2.</li>
-                <li><strong>Aggregate result.</strong> The image-level prediction is a majority vote across patches; patch agreement and top matches are reported.</li>
-              </ol>
-            </article>
-
-            <article class="panel">
-              <h2>Photograph quality guide</h2>
-              <div class="compare">
-                <div class="compare-col good">
-                  <h3>Suitable</h3>
-                  <ul>
-                    <li>Transverse/cross-section face clearly visible</li>
-                    <li>Flat, clean cut; surface fills the frame</li>
-                    <li>Sharp focus with even, diffuse lighting</li>
-                    <li>Camera approximately perpendicular to surface</li>
-                  </ul>
-                </div>
-                <div class="compare-col bad">
-                  <h3>Unsuitable</h3>
-                  <ul>
-                    <li>Side grain, bark, or angled/oblique view</li>
-                    <li>Blur, glare, heavy shadow, dirt, or moisture</li>
-                    <li>Wood area too small or pores not visible</li>
-                    <li>Hands, tools, or marks obscuring the surface</li>
-                  </ul>
-                </div>
-              </div>
-              <button class="link-btn" type="button" data-go="photograph">View full capture guidance</button>
-            </article>
-
-            <article class="panel">
-              <h2>Species scope</h2>
-              <p>Covers <strong>29 timber species</strong> traded in Ibadan wood markets (hardwoods in this dataset). The model cannot reliably identify species outside this scope. Documented applications/end-uses shown with results come from the local species database, not from image analysis.</p>
-              <button class="link-btn" type="button" data-go="species">Browse species directory</button>
-            </article>
+            <div class="side-notes">
+              <article class="note">
+                <h3>How a result is produced</h3>
+                <ol class="process">
+                  <li><strong>Acquire</strong> a transverse (end-grain) photograph.</li>
+                  <li><strong>Divide</strong> the image into a 6 × 8 grid (48 patches, raster order).</li>
+                  <li><strong>Classify</strong> each 112 × 112 normalized patch with ShuffleNetV2.</li>
+                  <li><strong>Aggregate</strong> by majority vote; report agreement and top matches.</li>
+                </ol>
+              </article>
+              <article class="note">
+                <h3>Before you capture</h3>
+                <ul class="plain-list">
+                  <li>Expose a fresh, flat cut surface and clear loose debris.</li>
+                  <li>Hold the camera square to the surface; fill the frame with wood.</li>
+                  <li>Use diffuse light and confirm pores/rays are sharp.</li>
+                </ul>
+                <button class="link-btn" type="button" data-go="photograph">Full field guide</button>
+              </article>
+              <article class="note">
+                <h3>Reference data</h3>
+                <p>Species names, wood type and documented applications come from the bundled local catalogue (literature/database records), not from image analysis.</p>
+                <button class="link-btn" type="button" data-go="species">Browse 29 species</button>
+              </article>
+            </div>
           </div>
 
           <div id="result" aria-live="polite" aria-atomic="true"></div>
 
           <aside class="home-disclaimer" aria-label="Research notice">
-            <p><strong>Research prototype.</strong> Predictions can be incorrect and are limited to 29 Ibadan-market hardwood species. Not for legal, purchasing, import/export, or structural decisions. <button class="link-btn" type="button" data-go="about">Read full limitations &amp; methodology</button></p>
+            <p><strong>Research prototype.</strong> Independent-specimen accuracy is limited (reported 12.1% ShuffleNetV2, 11.3% ResNet18; 611 images, 14 species). Outputs are not a guarantee of correctness and are restricted to the 29-species Ibadan scope. <button class="link-btn" type="button" data-go="about">Methodology &amp; limitations</button></p>
           </aside>
         </div>
       </section>
 
       <section class="screen" id="screen-species" aria-labelledby="species-title" hidden>
         <div class="container">
-          <div class="section-head">
-            <p class="kicker">Defined scope</p>
-            <h1 id="species-title">Species directory</h1>
-            <p class="lede">Search 29 supported species by local or botanical name. Entries show available names, wood type, training specimen count, and documented applications/end-uses recorded in the project database.</p>
-          </div>
+          <header class="section-head">
+            <p class="eyebrow">Specimen catalogue</p>
+            <h1 id="species-title">Species in scope</h1>
+            <p class="lede">Twenty-nine hardwood taxa traded in Ibadan wood markets. Entries list available names, classification, training specimen count, and documented applications recorded in the project database.</p>
+          </header>
 
           <div class="toolbar">
             <label class="search" for="species-search">
               <span class="visually-hidden">Search species</span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M16 16l4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-              <input id="species-search" type="search" autocomplete="off" placeholder="Search by local, botanical, or English name">
+              <input id="species-search" type="search" autocomplete="off" placeholder="Search local, botanical, or English name">
             </label>
-            <p id="species-count" class="status muted" role="status">Loading species…</p>
+            <p id="species-count" class="status muted" role="status">Loading catalogue…</p>
           </div>
 
-          <p id="species-empty" class="empty" hidden>No species match that search.</p>
+          <p id="species-empty" class="empty" hidden>No species match this search.</p>
           <div id="species-list" class="species-grid" aria-live="polite"></div>
-          <p id="species-error" class="error" role="alert" hidden>Species information could not be loaded.</p>
+          <p id="species-error" class="error" role="alert" hidden>Species information could not be loaded from local data.</p>
         </div>
       </section>
 
       <section class="screen" id="screen-photograph" aria-labelledby="photograph-title" hidden>
-        <div class="container">
-          <div class="section-head narrow">
-            <p class="kicker">Capture guidance</p>
-            <h1 id="photograph-title">How to photograph transverse end-grain</h1>
-            <p class="lede">The classifier relies on anatomical features visible on the cross-section. Image quality and correct surface selection are critical for meaningful output.</p>
+        <div class="container narrow">
+          <header class="section-head">
+            <p class="eyebrow">Field guide</p>
+            <h1 id="photograph-title">Photographing the transverse end-grain</h1>
+            <p class="lede">The model compares anatomical patterns visible on the cross-section. Correct surface selection and image quality are essential for a meaningful observation.</p>
+          </header>
+
+          <div class="guide-grid">
+            <article class="guide-block good">
+              <h2>Recommended practice</h2>
+              <ul>
+                <li><strong>Surface:</strong> transverse (end-grain / cross-section) only.</li>
+                <li><strong>Preparation:</strong> flat, clean, freshly exposed cut; remove loose dust without sealing pores.</li>
+                <li><strong>Framing:</strong> wood fills most of the frame; camera held square to the face.</li>
+                <li><strong>Lighting &amp; focus:</strong> diffuse, even light; vessels and rays clearly resolved.</li>
+              </ul>
+            </article>
+            <article class="guide-block avoid">
+              <h2>Unsuitable images</h2>
+              <ul>
+                <li><strong>Wrong plane:</strong> tangential/radial side grain, bark, or oblique views.</li>
+                <li><strong>Occlusion:</strong> fingers, tools, labels, paint, soil, or moisture on the surface.</li>
+                <li><strong>Artifacts:</strong> motion blur, defocus, specular glare, or heavy shadow.</li>
+                <li><strong>Scale:</strong> distant or tightly cropped views where pore structure is unclear.</li>
+              </ul>
+            </article>
           </div>
 
-          <div class="compare compare-large">
-            <div class="compare-col good">
-              <h2>Recommended</h2>
-              <ul>
-                <li><strong>Surface:</strong> transverse (end-grain/cross-section) only.</li>
-                <li><strong>Preparation:</strong> flat, clean, freshly exposed cut; remove loose dust without blocking pores.</li>
-                <li><strong>Framing:</strong> wood fills most of the frame; keep camera square to the surface.</li>
-                <li><strong>Exposure:</strong> sharp focus, even lighting, minimal shadow or specular glare.</li>
-              </ul>
-            </div>
-            <div class="compare-col bad">
-              <h2>Avoid</h2>
-              <ul>
-                <li><strong>Wrong view:</strong> tangential/radial side grain, bark, or heavily angled shots.</li>
-                <li><strong>Occlusion:</strong> fingers, tools, labels, paint, soil, or moisture on the surface.</li>
-                <li><strong>Artifacts:</strong> motion blur, defocus, strong reflections, or extreme darkness.</li>
-                <li><strong>Scale:</strong> distant or tightly cropped images where pore structure is unclear.</li>
-              </ul>
-            </div>
-          </div>
+          <section class="guide-explain">
+            <h2>What “transverse end-grain” means</h2>
+            <p>Imagine cutting across the trunk like slicing a loaf: the exposed face shows growth rings, vessels (pores) and rays as patterns on the cross-section. This is different from the long-grain patterns seen on planks (side grain). Timber ID is trained only on transverse end-grain surfaces.</p>
+          </section>
 
           <ol class="steps-list">
-            <li><h3>Expose a clean cross-section</h3><p>Use a flat end cut and clear debris so anatomical features are visible.</p></li>
-            <li><h3>Stabilize and light the surface</h3><p>Hold steady under diffuse light; confirm vessels and rays appear sharp before capture.</p></li>
-            <li><h3>Frame the wood surface</h3><p>Fill the frame with timber, avoiding background clutter and obstructions.</p></li>
-            <li><h3>Review and submit</h3><p>Replace blurry or poorly lit images; better input reduces avoidable errors.</p></li>
+            <li><h3>Expose a clean cross-section</h3><p>Make or select a flat end cut and clear debris so anatomical features remain visible.</p></li>
+            <li><h3>Stabilise and light the surface</h3><p>Hold steady under diffuse light; confirm the texture is sharp before capture.</p></li>
+            <li><h3>Frame the wood, not the background</h3><p>Fill the frame with timber and keep the camera approximately perpendicular.</p></li>
+            <li><h3>Review, then analyse</h3><p>Replace blurred or poorly lit images; better input reduces avoidable error.</p></li>
           </ol>
 
           <button class="btn btn-primary" type="button" data-go="identify">Return to identification</button>
@@ -211,41 +216,42 @@
       </section>
 
       <section class="screen" id="screen-about" aria-labelledby="about-title" hidden>
-        <div class="container">
-          <div class="section-head narrow">
-            <p class="kicker">Methodology & limitations</p>
-            <h1 id="about-title">About Timber ID</h1>
-            <p class="lede">Timber ID is an academic research prototype for machine-learning-based identification of Nigerian timber species from macroscopic transverse end-grain images, with documented species information presented for reference.</p>
-          </div>
+        <div class="container narrow">
+          <header class="section-head">
+            <p class="eyebrow">Methodology &amp; context</p>
+            <h1 id="about-title">About this instrument</h1>
+            <p class="lede">Nigerian Timber ID is an academic research prototype for macroscopic identification of Nigerian timber species from transverse end-grain images, with documented species information presented as reference.</p>
+          </header>
 
-          <div class="about-grid">
-            <article class="panel">
+          <div class="prose">
+            <section class="prose-block">
               <h2>Model and preprocessing</h2>
-              <p>Images are analysed as a 6 × 8 grid (48 patches). Each patch is resized to 112 × 112 pixels and normalized with ImageNet mean/std. The ShuffleNetV2 classifier produces per-patch predictions aggregated by majority vote (with mean-probability tie-breaking) to yield the image-level result and patch agreement.</p>
-            </article>
-            <article class="panel">
-              <h2>Dataset scope</h2>
-              <p>29 timber species traded in Ibadan wood markets, photographed on transverse end-grain surfaces. All species in scope are hardwoods; the system does not recognize softwoods or species outside this set. Splits and evaluation follow the project’s specimen-aware protocol.</p>
-            </article>
-            <article class="panel">
+              <p>Each image is divided into a 6 × 8 grid (48 patches). Patches are resized to 112 × 112 pixels and normalized with ImageNet mean and standard deviation. A ShuffleNetV2 classifier (primary; ResNet18 used for comparison in evaluation) produces per-patch predictions aggregated by majority vote with mean-probability tie-breaking to yield an image-level suggestion and patch agreement.</p>
+            </section>
+            <section class="prose-block">
+              <h2>Dataset and scope</h2>
+              <p>Scope covers 29 hardwood species traded in Ibadan wood markets, photographed on transverse end-grain surfaces. The system does not recognize softwoods or species outside this set. Evaluation followed a specimen-aware protocol consistent with the project design.</p>
+            </section>
+            <section class="prose-block">
               <h2>Interpreting outputs</h2>
-              <p><strong>Patch agreement</strong> is the proportion/count of 48 sections voting for the reported species. It is not a calibrated probability and not a guarantee of correctness. Top matches and mean probabilities are supplementary indicators. Documented applications/end-uses are literature/database records for the species and are not predicted from the photograph.</p>
-            </article>
-            <article class="panel">
+              <p><strong>Patch agreement</strong> is the proportion/count of 48 regions voting for the reported species. It is a measure of internal consistency, not a calibrated probability and not a guarantee of correctness. Top matches and mean probabilities are supplementary. Documented applications and end-uses are literature/database records associated with the species and are not predicted from the photograph.</p>
+            </section>
+            <section class="prose-block">
               <h2>Privacy and appropriate use</h2>
-              <p>Designed for local processing: images are handled on-device by the application and are not transmitted to external servers. Do not use outputs for legal, regulatory, purchasing, import/export, or structural-grading purposes.</p>
-            </article>
-            <article class="panel emphasis">
+              <p>Designed for local processing: images are handled on-device and are not transmitted to external servers by the application. Outputs must not be used for legal, regulatory, purchasing, import/export, or structural-grading decisions.</p>
+            </section>
+            <section class="prose-block limitations-block">
               <h2>Model limitations and research notes</h2>
               <details class="limitations-details">
-                <summary><strong>Research prototype — read limitations (important)</strong></summary>
+                <summary>Read full limitations (important for interpretation)</summary>
                 <div class="limitations-body">
-                  <p><strong>Performance and status:</strong> Reported independent-specimen image-level accuracy is 12.1% (ShuffleNetV2, primary) and 11.3% (ResNet18, comparison) on 611 held-out images from 14 species. Fifteen single-specimen species lacked independent-specimen test results. Predictions can be incorrect and should be interpreted with caution.</p>
-                  <p><strong>Scope:</strong> Results apply only to the defined 29-species Ibadan transverse end-grain scope. The model cannot reliably identify species outside this set.</p>
-                  <p><strong>Appropriate use:</strong> Not for legal, regulatory, purchasing, import/export, or structural-grading decisions. Patch agreement/mean probability are model outputs, not guarantees of correctness.</p>
+                  <p><strong>Performance and status:</strong> Reported independent-specimen image-level accuracy was 12.1% (ShuffleNetV2, primary) and 11.3% (ResNet18, comparison) on 611 held-out images from 14 species. Fifteen single-specimen species lacked independent-specimen test results. Predictions can be incorrect and should be interpreted with caution.</p>
+                  <p><strong>Scope boundary:</strong> Results apply only to the defined 29-species Ibadan transverse end-grain scope. The model cannot reliably identify species outside this set.</p>
+                  <p><strong>Appropriate use:</strong> Not for legal, regulatory, purchasing, import/export, or structural-grading decisions. Patch agreement and mean probability are model outputs, not guarantees of correctness.</p>
+                  <p><strong>Documented uses:</strong> End-use information is drawn from available literature/database records for the species; it is descriptive reference data, not a property inferred from the submitted image.</p>
                 </div>
               </details>
-            </article>
+            </section>
           </div>
         </div>
       </section>
@@ -253,8 +259,8 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p>Timber ID · Nigerian timber species identification research prototype</p>
-        <p>Patch agreement is an internal vote measure, not a calibrated probability.</p>
+        <p>Nigerian Timber ID · Academic research prototype · University of Ibadan context</p>
+        <p>Patch agreement reflects internal vote consistency, not calibrated probability.</p>
       </div>
     </footer>
   </body>
