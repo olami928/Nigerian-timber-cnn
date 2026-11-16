@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nigerian Timber ID · Mobile App</title>
+  <meta name="description" content="Mobile field instrument for macroscopic identification of 29 Nigerian hardwood species from transverse cut surfaces.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;800;900&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.bundle.js" defer></script>
+</head>
+<body class="app-mode">
+
+  <div id="app" role="application" aria-label="Nigerian Timber ID Mobile App">
+    <!-- Splash Screen -->
+    <div class="splash" id="splash">
+      <svg viewBox="-100 -100 200 200" id="logo" role="img" aria-label="Wood ring cross section logo"></svg>
+      <b>Nigerian Timber ID</b>
+      <i aria-hidden="true"></i>
+    </div>
+
+    <!-- Main Dynamic Screen Content -->
+    <main class="app-main" id="m" tabindex="-1" aria-live="polite"></main>
+
+    <!-- Bottom Tab Navigation -->
+    <nav class="tabs" aria-label="Bottom Navigation">
+      <button data-t="home" id="tab-home" aria-current="page">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11l9-7 9 7v9H3z"/></svg>
+        <span>Home</span>
+      </button>
+      <button data-t="cap" id="tab-cap" class="cam" aria-label="Identify specimen">
+        <span>
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 8h3l2-3h6l2 3h3v11H4z"/>
+            <circle cx="12" cy="13" r="3.5"/>
+          </svg>
+        </span>
+      </button>
+      <button data-t="lib" id="tab-lib">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4" y="4" width="7" height="7"/>
+          <rect x="13" y="4" width="7" height="7"/>
+          <rect x="4" y="13" width="7" height="7"/>
+          <rect x="13" y="13" width="7" height="7"/>
+        </svg>
+        <span>Catalogue</span>
+      </button>
+      <button data-t="hist" id="tab-hist">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="8"/>
+          <path d="M12 7v5l3 2"/>
+        </svg>
+        <span>History</span>
+      </button>
+    </nav>
+  </div>
+
+</body>
+</html>
