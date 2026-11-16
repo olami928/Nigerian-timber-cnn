@@ -256,50 +256,6 @@ function initWebsite() {
 
   const lib = document.getElementById("lib");
   const q = document.getElementById("q");
-  const modal = document.getElementById("species-modal");
-  // Ensure modal is hidden on page load
-  if (modal) modal.hidden = true;
-  const modalClose = document.getElementById("modal-close");
-  const modalImg = document.getElementById("modal-img");
-  const modalTitle = document.getElementById("modal-title");
-  const modalBotanical = document.getElementById("modal-botanical");
-  const modalType = document.getElementById("modal-type");
-  const modalUses = document.getElementById("modal-uses");
-
-  function openModal(species) {
-    if (!modal) return;
-    modalTitle.textContent = species.local_name;
-    modalBotanical.textContent = species.botanical;
-    modalType.textContent = species.wood_type || "Hardwood";
-    modalImg.src = `species_photos/${species.slug}.jpg`;
-    modalImg.alt = `${species.local_name} transverse cut`;
-
-    const uses = species.documented_uses ?? species.uses ?? {};
-    const entries = Object.entries(uses);
-    if (!entries.length) {
-      modalUses.innerHTML = '<span class="empty">No documented applications recorded in current database.</span>';
-    } else {
-      modalUses.innerHTML = `<div class="use-chip-wrap">${entries
-        .map(
-          ([u, status]) =>
-            `<span class="use-chip ${status}">${u.replaceAll("_", " ")}</span>`
-        )
-        .join("")}</div>`;
-    }
-    modal.hidden = false;
-    modalClose?.focus();
-  }
-
-  if (modalClose) {
-    modalClose.onclick = () => {
-      modal.hidden = true;
-    };
-  }
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) modal.hidden = true;
-  });
-  document.getElementById("modal-identify-btn")?.addEventListener("click", () => {
-    modal.hidden = true;
   });
 
   function renderCatalogue() {
