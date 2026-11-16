@@ -257,6 +257,8 @@ function initWebsite() {
   const lib = document.getElementById("lib");
   const q = document.getElementById("q");
   const modal = document.getElementById("species-modal");
+  // Ensure modal is hidden on page load
+  if (modal) modal.hidden = true;
   const modalClose = document.getElementById("modal-close");
   const modalImg = document.getElementById("modal-img");
   const modalTitle = document.getElementById("modal-title");
