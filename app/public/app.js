@@ -235,6 +235,10 @@ async function prepareImage(file) {
    ========================================================================== */
 
 function initWebsite() {
+
+  // Ensure species-modal is hidden on page load
+  const modal = document.getElementById("species-modal");
+  if (modal) modal.hidden = true;
   const fig = document.getElementById("fig");
   if (fig) {
     let h = "";
