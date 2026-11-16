@@ -236,9 +236,6 @@ async function prepareImage(file) {
 
 function initWebsite() {
 
-  // Ensure species-modal is hidden on page load
-  const modal = document.getElementById("species-modal");
-  if (modal) modal.hidden = true;
   const fig = document.getElementById("fig");
   if (fig) {
     let h = "";
@@ -260,7 +257,15 @@ function initWebsite() {
 
   const lib = document.getElementById("lib");
   const q = document.getElementById("q");
-  });
+  // Ensure species-modal is hidden on page load
+  const modal = document.getElementById("species-modal");
+  if (modal) modal.hidden = true;
+  const modalClose = document.getElementById("modal-close");
+  const modalImg = document.getElementById("modal-img");
+  const modalTitle = document.getElementById("modal-title");
+  const modalBotanical = document.getElementById("modal-botanical");
+  const modalType = document.getElementById("modal-type");
+  const modalUses = document.getElementById("modal-uses");
 
   function renderCatalogue() {
     if (!lib) return;
